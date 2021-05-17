@@ -1,0 +1,109 @@
+﻿<Window x:Class="Team4_YelpProject.View.BusinessTipsView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Team4_YelpProject.View"
+        mc:Ignorable="d"
+        Title="BusinessTipsView" 
+        Height="470" 
+        Width="820" 
+        Background="#FF5F5858">
+    <Window.Resources>
+        <Style TargetType="GroupBox">
+            <Setter Property="FontFamily" Value="OCR A Extended"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="#FFFFE800"/>
+        </Style>
+        <Style TargetType="DataGrid">
+            <Setter Property="FontFamily" Value="OCR A Extended"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Foreground" Value="#FF000000"/>
+        </Style>
+        <Style TargetType="Label">
+            <Setter Property="FontFamily" Value="OCR A Extended"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Foreground" Value="#FFE6FD00"/>
+        </Style>
+        <Style TargetType="Label" x:Key="UserResult">
+            <Setter Property="FontFamily" Value="OCR A Extended"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Foreground" Value="#FFFFAE00"/>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="800"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Orientation="Horizontal">
+            <StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Horizontal">
+                    <TextBox x:Name="newTipInputBox"
+                             Height="50" 
+                             Width="700"  
+                             Margin="5 5 5 5"
+                             Text="{Binding Path=NewTip.Text, 
+                                            Mode=TwoWay,
+                                            UpdateSourceTrigger=LostFocus}"/>
+                    <StackPanel Orientation="Vertical">
+                        <Button Content="Add Tip" 
+                                Width="70" 
+                                Margin="5 5 5 5"
+                                Command="{Binding Path=AddTipCommand}"/>
+                        <Button Content="Like" 
+                                Width="70" 
+                                Margin="5 5 5 5"
+                                Command="{Binding Path=LikeCommand}"/>
+                    </StackPanel>
+                </StackPanel>
+                <GroupBox Header="Business Tips" 
+                          Height="230"  
+                          Margin="5 5 0 5">
+                    <DataGrid x:Name="tipList" 
+                              Width="760"
+                              Margin="5 5 5 5"
+                              ItemsSource="{Binding Path=TipsList,
+                                            Mode=TwoWay}"
+                              SelectedItem="{Binding Path=SelectedTip}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Date" 
+                                                Width="auto"
+                                                Binding="{Binding Path=Date}"/>
+                            <DataGridTextColumn Header="User Name" 
+                                                Width="auto" 
+                                                Binding="{Binding Path=UserName}"/>
+                            <DataGridTextColumn Header="Likes" 
+                                                Width="auto" 
+                                                Binding="{Binding Path=Likes}"/>
+                            <DataGridTextColumn Header="User Text" 
+                                                Width="auto" 
+                                                Binding="{Binding Path=Text}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </GroupBox>
+                <GroupBox Header="Friends who reviewed this business" 
+                          Height="130"
+                          Margin="5 5 0 5">
+                    <DataGrid x:Name="CheckinList" 
+                              Width="760"
+                              Margin="5 5 5 5"
+                              ItemsSource="{Binding Path=FriendTipsList, 
+                                            Mode=TwoWay}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Date" 
+                                                Width="auto"
+                                                Binding="{Binding Path=Date}"/>
+                            <DataGridTextColumn Header="User Name" 
+                                                Width="auto" 
+                                                Binding="{Binding Path=UserName}"/>
+                            <DataGridTextColumn Header="User Text" 
+                                                Width="auto" 
+                                                Binding="{Binding Path=Text}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </GroupBox>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

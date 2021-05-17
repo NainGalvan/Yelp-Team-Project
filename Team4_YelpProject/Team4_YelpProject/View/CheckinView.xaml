@@ -1,0 +1,51 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Team4_YelpProject.View"
+        xmlns:chartingToolkit="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit" 
+        x:Class="Team4_YelpProject.View.CheckinView"
+        mc:Ignorable="d"
+        Title="CheckinView" Height="450" Width="700">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="550"/>
+            <ColumnDefinition Width="100"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="300"/>
+        </Grid.RowDefinitions>
+        <ScrollViewer HorizontalAlignment="Stretch" 
+                      VerticalAlignment="Stretch"
+                      Grid.Column="0"
+                      Grid.Row="1"
+                      Padding="3"
+                      Margin="5 5 5 5">
+            <chartingToolkit:Chart Title="Year of Check-ins"
+                                   Name="CheckinChart"
+                                   Margin="5 5 5 5"
+                                   Padding="10">
+
+                    <chartingToolkit:ColumnSeries Title="# of Check-ins"
+                                          HorizontalAlignment="Left"
+                                          VerticalAlignment="Top"
+                                          DependentValuePath="Value"
+                                          IndependentValuePath="Key"
+                                          ItemsSource="{Binding Path=Checkins}"/>
+
+            </chartingToolkit:Chart>
+        </ScrollViewer>
+        <Button Content="Check-In"
+                Grid.Column="1"
+                Grid.Row="1"
+                Margin="5 5"
+                Padding="3"
+                Height="70" 
+                Width="70" 
+                Background="#FF309719" 
+                Foreground="#FFFDF200"
+                Command="{Binding Path=CheckinWindowCommand}"/>
+    </Grid>
+</Window>
